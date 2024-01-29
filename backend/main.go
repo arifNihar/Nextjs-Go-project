@@ -120,6 +120,9 @@ func createUser(db *sql.DB) http.HandlerFunc {
 
 func updateUser(db *sql.DB) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		var u User
+		json.NewDecoder(r.Body).Decode(&u)
+
 		vars := mux.Vars(r)
 		id := vars["id"]
 
